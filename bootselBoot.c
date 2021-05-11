@@ -44,7 +44,7 @@ int main(int argc, const char * argv[])
     if (ret != 0) {
         return -1;
     }
-    libusb_set_log_cb(NULL, logcallback, LIBUSB_LOG_CB_GLOBAL);
+    //  libusb_set_log_cb(NULL, logcallback, LIBUSB_LOG_CB_GLOBAL);
     
     libusb_device_handle    *handle;
     uint16_t    vendor_id = 0x2E8A;
