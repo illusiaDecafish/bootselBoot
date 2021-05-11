@@ -2,7 +2,7 @@
 //  main.c
 //  libusbtest
 //
-//  Created by 山田 隆俊 on 2021/05/02.
+//  Created by decafish on 2021/05/02.
 //
 
 #include <stdio.h>
