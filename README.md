@@ -129,4 +129,26 @@ I'm sorry I don't know how.
 
 Please encourege yourself.
 
+# References
+
+Reset funtion description from pico_stdio_usb doxygen
+
+["..reset over the USB interface"](https://raspberrypi.github.io/pico-sdk-doxygen/group__pico__stdio__usb.html)
+
+Reset interface code on Pi Pico:
+[header](https://raspberrypi.github.io/pico-sdk-doxygen/reset__interface_8h_source.html)
+
+[C source](https://github.com/raspberrypi/pico-sdk/blob/master/src/rp2_common/pico_stdio_usb/reset_interface.c)
+
+vendorID and productID of Pi Pico on device mode:
+
+[raspberrypi/usb-pid](https://github.com/raspberrypi/usb-pid)
+
+libusb-1.0:
+
+[libusb.info](https://libusb.info)
+
+The authors blog, but sorry in Japanese.
+
+[decafish.blog](https://decafish.blog.ss-blog.jp)
 
