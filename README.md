@@ -1,12 +1,11 @@
 # bootselBoot
-
-A small command line application to reset Raspberry Pi Pico to BOOTSEL mode via. USB.
+A small command line application to reset Raspberry Pi Pico to BOOTSEL mode via. USB, not BOOTSEL button.
 
 ## BOOTSEL
 
-Raspberry Pi Pico has BOOTSEL mode that a Pico board is connect to a host via. USB by device mode. Flash storage on the board is mounted on the host as a USB flash drive.
+Raspberry Pi Pico has BOOTSEL mode that a board is connect to a host via. USB by device mode. Flash storage on the board can be mounted on the host as a USB flash drive.
 
-BOOTSEL mode can be invoked by pressing 'BOOTSEL' button on the board when the board is plugged with USB or 'RUN' pin on the right card edge of the board is switched to GND. But these procedures are annoying because the board is rather delicate and there is a possibility to break a microUSB port. It is better to handle without hardware treatments.
+BOOTSEL mode can be invoked by pressing 'BOOTSEL' button on the board when the board is plugged with USB or 'RUN' pin on the right card edge of the board is switched to GND. But these procedures are annoying because the board is rather delicate and there is a possibility to break a microUSB port or the board itself. It is better to handle without hardware treatments.
 
 I found a solution to reset Pico via. USB from a host with some limitations:
 
@@ -29,20 +28,8 @@ $ cd ..
 $ git clone -b master https://github.com/raspberrypi/pico-examples.git
 ```
 
-libusb-1.0 library should be installed.
 
-```
-$ sudo apt update
-$ sudo apt install libusb-1.0
-```
-
-copy bootselBoot.c file to your directory and compile.
-
-```
-$ cc bootselBoot.c -o bootselBoot -I/usr/include/libusb-1.0 -L/usr/lib/arm-linux-gnueabihf -lusb-1.0
-```
-
-Install a serial terminal emulator. At htis time, 
+Install a serial terminal emulator. At this time, 
 
 ```
 $ apt install screen
@@ -83,12 +70,18 @@ Then the LED blinks continuously and slowly (period is may be about 1sec). Invok
 $ screen /dev/ttyACM0 9600
 ```
 
-device file '/dev/ttyACM0' is a CDC (Communication Data Class) port of the connected Pi Pico. When you key in a character '1', LED blinks faster and '2' .. '9' LED blinks slower. To exit screen command, type C-a (a with control-key) -> k -> y.
+device file '/dev/ttyACM0' is a CDC (Communication Data Class) port of the connected Pi Pico. When you key in a character '1', LED blinks faster and '2' .. '9' LED blinks slower. To exit screen command, type C-a ('a' with control-key) -> k -> y.
 
 ## invoke bootselBoot
 
-Again return bootselBoot directory and compile cootselBoot.c.
+To build bootselBoot.c, libusb-1.0 library should be installed.
 
+```
+$ sudo apt update
+$ sudo apt install libusb-1.0
+```
+
+Again return bootselBoot directory and compile cootselBoot.c.
 ```
 $ cc bootselBoot.c -o bootselBoot -I/usr/include/libusb-1.0 -L/usr/lib/arm-linux-gnueabihf -lusb-1.0
 ```
@@ -108,4 +101,32 @@ $  ls /dev/sd*
 You can mount and copy other uf2 file onto the flash storage and don't need the procedure 'unplug USB/pressing BOOTSEL/plug USB again'.
 
 It is handy and useful.
+
+#Other platforms
+
+Almost same procedures on other platforms such as debian, ubuntu or macOS. There are some notes: 
+
+- device file name of flash storage and USB CDC port of Pi Pico may be diffrent.
+
+- A path of libusb-1.0 library and its include file may also be different.
+
+For example, on macOS,
+
+- device file of CDC port may be /dev/tty.usbmodem0000000000001
+
+- flash storage is mounted automatically on /Volumes/RPI-RP2 (its device file may be /dev/disk4s1 etc.)
+
+- libusb-1.0 should be installed manually by homebrew or MacPorts etc.
+
+- compile command is 
+  ```
+  $ cc bootselBoot.c -o bootselBoot -I/usr/local/include/libusb-1.0 -L/usr/local/lib -lusb-1.0
+  ```
+  for the homebrew case.
+
+# For Windows
+I'm sorry I don't know how.
+
+Please encourege yourself.
+
 
