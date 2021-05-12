@@ -52,7 +52,7 @@ int main(int argc, const char * argv[])
 
     handle = libusb_open_device_with_vid_pid(NULL, vendor_id, product_id);
     if (handle == NULL) {
-        fprintf(stderr, "No pico device available or a device has standard pico_stdio_usb module.\n");
+        fprintf(stderr, "No pico device available or a device has no standard pico_stdio_usb module.\n");
         libusb_exit(NULL);
         return(-1);
     }
