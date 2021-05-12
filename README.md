@@ -37,7 +37,7 @@ $ apt install screen
 
 Plug a Pi Pico board to a USB connector of the host. Install a executable code to the board. For example, install hello_world example from pico-example.
 
-## for Pi Pico to test bootselBoot
+## Test example code for Pi Pico
 
 Install any executable that includes pico_stdio_usb. For example, here is a test code named pwmled.c that is a small code and blinks on-board LED continuously using PWM capability of Pi Pico and reads a character from USB port to change blink period.
 
@@ -92,7 +92,7 @@ And invoke bootselBoot command to reset the Pi Pico
 $ sudo ./bootselBoot b
 ```
 
-Then you can see the LED on the board stopping and off and you can find a device file of the flash storage.
+Then you can see the LED on the board turning off and find a device file of the flash storage.
 
 ```
 $  ls /dev/sd*
