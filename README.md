@@ -1,4 +1,5 @@
 # bootselBoot
+
 A small command line application to reset Raspberry Pi Pico to BOOTSEL mode via USB, not BOOTSEL button.
 
 ## BOOTSEL
@@ -82,6 +83,7 @@ $ sudo apt install libusb-1.0
 ```
 
 Again return bootselBoot directory and compile cootselBoot.c.
+
 ```
 $ cc bootselBoot.c -o bootselBoot -I/usr/include/libusb-1.0 -L/usr/lib/arm-linux-gnueabihf -lusb-1.0
 ```
@@ -119,12 +121,15 @@ For example, on macOS,
 - libusb-1.0 should be installed manually by homebrew or MacPorts etc.
 
 - compile command is 
+
   ```
   $ cc bootselBoot.c -o bootselBoot -I/usr/local/include/libusb-1.0 -L/usr/local/lib -lusb-1.0
   ```
+
   for the homebrew case.
 
 # For Windows
+
 I'm sorry I don't know how.
 
 Please encourege yourself.
@@ -136,7 +141,7 @@ Reset funtion description from pico_stdio_usb doxygen
 ["..reset over the USB interface"](https://raspberrypi.github.io/pico-sdk-doxygen/group__pico__stdio__usb.html)
 
 Reset interface code on Pi Pico:
-[header](https://raspberrypi.github.io/pico-sdk-doxygen/reset__interface_8h_source.html)
+[Constant definitions](https://raspberrypi.github.io/pico-sdk-doxygen/reset__interface_8h_source.html)
 
 [C source](https://github.com/raspberrypi/pico-sdk/blob/master/src/rp2_common/pico_stdio_usb/reset_interface.c)
 
