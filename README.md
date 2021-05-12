@@ -1,5 +1,4 @@
 # bootselBoot
-
 A small command line application to reset Raspberry Pi Pico to BOOTSEL mode via USB, not BOOTSEL button.
 
 ## BOOTSEL
@@ -40,7 +39,7 @@ Plug a Pi Pico board to a USB connector of the host. Install a executable code t
 
 ## for Pi Pico to test bootselBoot
 
-Install any executable that includes pico_stdio_usb. For example, here is a test code named pwmled.c The pwmled is a small code and blinks on-board LED continuously using PWM capability of Pi Pico and reads a character from USB port to change blink period.
+Install any executable that includes pico_stdio_usb. For example, here is a test code named pwmled.c that is a small code and blinks on-board LED continuously using PWM capability of Pi Pico and reads a character from USB port to change blink period.
 
 To build pwmled, create a direcory named 'pwmled' neighbouring pico-sdk directory.
 
@@ -83,7 +82,6 @@ $ sudo apt install libusb-1.0
 ```
 
 Again return bootselBoot directory and compile cootselBoot.c.
-
 ```
 $ cc bootselBoot.c -o bootselBoot -I/usr/include/libusb-1.0 -L/usr/lib/arm-linux-gnueabihf -lusb-1.0
 ```
@@ -121,15 +119,12 @@ For example, on macOS,
 - libusb-1.0 should be installed manually by homebrew or MacPorts etc.
 
 - compile command is 
-
   ```
   $ cc bootselBoot.c -o bootselBoot -I/usr/local/include/libusb-1.0 -L/usr/local/lib -lusb-1.0
   ```
-
   for the homebrew case.
 
 # For Windows
-
 I'm sorry I don't know how.
 
 Please encourege yourself.
@@ -156,4 +151,5 @@ libusb-1.0:
 The authors blog, but sorry in Japanese.
 
 [decafish.blog](https://decafish.blog.ss-blog.jp)
+
 
