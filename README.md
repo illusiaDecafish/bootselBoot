@@ -7,7 +7,7 @@ Raspberry Pi Pico has BOOTSEL mode that a board is connect to a host via USB by 
 
 BOOTSEL mode can be invoked by pressing 'BOOTSEL' button on the board when the board is plugged with USB or 'RUN' pin on the right card edge of the board is switched to GND. But these procedures are annoying because the board is rather delicate and there is a possibility to break a microUSB port or the board itself. It is better to handle without hardware treatments.
 
-I found a solution to reset Pico via USB from a host with some limitations:
+There is a solution to reset Pico via USB from a host with some limitations:
 
 1. An executable code with pico_stdio_usb module is installed and executed on the board.
 2. The board is connected to a host computer via USB.
