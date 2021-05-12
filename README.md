@@ -102,7 +102,7 @@ You can mount and copy other uf2 file onto the flash storage and don't need the 
 
 It is handy and useful.
 
-#Other platforms
+# Other platforms
 
 Almost same procedures on other platforms such as debian, ubuntu or macOS. There are some notes: 
 
