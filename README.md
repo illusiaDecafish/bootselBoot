@@ -1,5 +1,5 @@
 # bootselBoot
-A small command line application to reset Raspberry Pi Pico to BOOTSEL mode via USB, not BOOTSEL button.
+A small command line application to reset Raspberry Pi Pico to BOOTSEL mode from a host via USB instead of pressing a hardware 'BOOTSEL' button.
 
 ## BOOTSEL
 
@@ -18,7 +18,7 @@ I wrote a small code using libusb-1.0 to send the control transfers to Pi Pico b
 
 ## On a Raspberry Pi as a host
 
-Install pico-sdk with TinyUSB module.
+Install pico-sdk with TinyUSB module. It is a standard procedure how to use Raspberry Pi for a host computer to Pi Pico board.
 
 ```
 $ git clone -b master https://github.com/raspberrypi/pico-sdk.git
@@ -29,22 +29,22 @@ $ git clone -b master https://github.com/raspberrypi/pico-examples.git
 ```
 
 
-Install a serial terminal emulator. At this time, 
+Additionally, install a serial terminal emulator. At this time, 
 
 ```
 $ apt install screen
 ```
 
+Any other serial emurators are OK.
 Plug a Pi Pico board to a USB connector of the host. Install a executable code to the board. For example, install hello_world example from pico-example.
 
-## Test example code for Pi Pico
+### Test example code for Pi Pico
 
-Install any executable that includes pico_stdio_usb. For example, here is a test code named pwmled.c that is a small code and blinks on-board LED continuously using PWM capability of Pi Pico and reads a character from USB port to change blink period.
+Install any executable that includes pico_stdio_usb. For example, here is a test code named pwmled.c that is a small code to blink on-board LED continuously using PWM capability of the board and to read a character from USB port to change blink period.
 
 To build pwmled, create a direcory named 'pwmled' neighbouring pico-sdk directory.
 
 ```
-$ cd ${PICO_SDK_PATH}/..
 $ git clone https://github.com/illusiaDecafish/bootselBoot
 $ cd bootselBoot/pwmled/
 $ mkdir build
@@ -72,9 +72,9 @@ $ screen /dev/ttyACM0 9600
 
 device file '/dev/ttyACM0' is a CDC (Communication Data Class) port of the connected Pi Pico. When you key in a character '1', LED blinks faster and '2' .. '9' LED blinks slower. To exit screen command, type C-a ('a' with control-key) -> k -> y.
 
-## invoke bootselBoot
+### How to compile and invoke bootselBoot
 
-To build bootselBoot.c, libusb-1.0 library should be installed.
+To build bootselBoot.c, libusb-1.0 library should be installed. Needless to say, bootselBoot is a native executable on a host, not on a Pi Pico.
 
 ```
 $ sudo apt update
@@ -92,25 +92,25 @@ And invoke bootselBoot command to reset the Pi Pico
 $ sudo ./bootselBoot b
 ```
 
-Then you can see the LED on the board turning off and find a device file of the flash storage.
+ The argument 'b' means BOOTSEL boot and 'f' for standard flash boot.You can see the LED on the board turning off and find a device file of the flash storage.
 
 ```
 $  ls /dev/sd*
 ```
 
-You can mount and copy other uf2 file onto the flash storage and don't need the procedure 'unplug USB/pressing BOOTSEL/plug USB again'.
+Then you can mount and copy other .uf2 file onto the flash storage and don't need the procedure 'unplug USB/pressing BOOTSEL/plug USB again'.
 
 It is handy and useful.
 
-# Other platforms
+## On other unix platforms
 
-Almost same procedures on other platforms such as debian, ubuntu or macOS. There are some notes: 
+Almost same procedures can work on other unix platforms such as debian, ubuntu or macOS. There are some notes: 
 
-- device file name of flash storage and USB CDC port of Pi Pico may be diffrent.
+- device file name of flash storage and USB CDC port of Pi Pico may be different.
 
-- A path of libusb-1.0 library and its include file may also be different.
+- A path to libusb-1.0 library and its include file may also be different.
 
-For example, on macOS,
+For example, on macOS 11.3.1,
 
 - device file of CDC port may be /dev/tty.usbmodem0000000000001
 
@@ -124,32 +124,33 @@ For example, on macOS,
   ```
   for the homebrew case.
 
-# For Windows
+## For Windows
 I'm sorry I don't know how.
 
 Please encourege yourself.
 
 # References
 
-Reset funtion description from pico_stdio_usb doxygen
+#### Reset funtion description from pico_stdio_usb doxygen:
 
-["..reset over the USB interface"](https://raspberrypi.github.io/pico-sdk-doxygen/group__pico__stdio__usb.html)
+["....reset over the USB interface"](https://raspberrypi.github.io/pico-sdk-doxygen/group__pico__stdio__usb.html)
 
-Reset interface code on Pi Pico:
-[Constant definitions](https://raspberrypi.github.io/pico-sdk-doxygen/reset__interface_8h_source.html)
+#### Reset interface code on Pi Pico:
 
 [C source](https://github.com/raspberrypi/pico-sdk/blob/master/src/rp2_common/pico_stdio_usb/reset_interface.c)
 
-vendorID and productID of Pi Pico on device mode:
+[Constant definitions](https://raspberrypi.github.io/pico-sdk-doxygen/reset__interface_8h_source.html)
+
+#### vendorID and productID of Pi Pico on device mode:
 
 [raspberrypi/usb-pid](https://github.com/raspberrypi/usb-pid)
 
-libusb-1.0:
+#### libusb-1.0:
 
 [libusb.info](https://libusb.info)
 
-The authors blog, but sorry in Japanese.
+#### The author's blog
 
 [decafish.blog](https://decafish.blog.ss-blog.jp)
 
-
+but sorry in Japanese.
